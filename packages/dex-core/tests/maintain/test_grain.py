@@ -276,7 +276,6 @@ def test_fully_null_join_side_columns_name_the_failed_join(maintain_repo):
     )
 
 
-
 def test_fully_null_computed_column_on_small_table_is_low_severity(maintain_repo):
     """A fully NULL computed column on a small table should have low severity."""
     maintain_repo.sql(
@@ -305,8 +304,6 @@ def test_fully_null_computed_column_on_small_table_is_low_severity(maintain_repo
     assert findings[0]["data"]["grain_min_rows"] == 100
 
 
-
-
 def test_fully_null_computed_column_with_unrelated_join_is_low_severity(
     maintain_repo,
 ):
@@ -322,9 +319,7 @@ def test_fully_null_computed_column_with_unrelated_join_is_low_severity(
     assert rc == 0 and payload["status"] == "ok", payload
     maintain_repo.snapshot()
 
-    rc, payload = maintain_repo.dex(
-        "maintain", "grain", "small_null_with_join"
-    )
+    rc, payload = maintain_repo.dex("maintain", "grain", "small_null_with_join")
     assert rc == 0 and payload["status"] == "ok", payload
 
     findings = [
@@ -337,9 +332,6 @@ def test_fully_null_computed_column_with_unrelated_join_is_low_severity(
     assert len(findings) == 1, payload["data"]["findings"]
     assert findings[0]["column"] == "computed_value"
     assert findings[0]["severity"] == "low"
-
-
-
 
 
 def test_mostly_null_column_is_a_low_severity_near_miss(maintain_repo):

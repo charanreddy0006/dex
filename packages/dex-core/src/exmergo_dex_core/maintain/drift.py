@@ -1505,8 +1505,7 @@ def grain_drift(
             identifier=dataset.identifier,
             severity="low",
             detail=(
-                f"{dataset.identifier} has no rows; "
-                "null fractions were not reported"
+                f"{dataset.identifier} has no rows; null fractions were not reported"
             ),
             data={"row_count": 0},
         )
@@ -1565,15 +1564,11 @@ def grain_drift(
             }
 
             if fully_null and joins:
-               finding_data["joins"] = joins
+                finding_data["joins"] = joins
             findings.append(
                 DriftFinding(
                     axis="grain",
-                    code=(
-                        "fully_null_column"
-                        if fully_null
-                        else "mostly_null_column"
-                    ),
+                    code=("fully_null_column" if fully_null else "mostly_null_column"),
                     identifier=dataset.identifier,
                     column=aggregate.name,
                     severity=(
@@ -1585,11 +1580,7 @@ def grain_drift(
                     ),
                     detail=(
                         f"{aggregate.name} on {dataset.identifier} is "
-                        + (
-                            "100% NULL"
-                            if fully_null
-                            else f"{fraction:.1%} NULL"
-                        )
+                        + ("100% NULL" if fully_null else f"{fraction:.1%} NULL")
                         + (
                             "; its joined relation may have matched nothing"
                             if fully_null and joins and row_count >= min_rows

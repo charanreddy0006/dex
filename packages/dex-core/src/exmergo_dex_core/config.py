@@ -392,7 +392,6 @@ class ClusterLimits(BaseModel):
     timeout_seconds: float = 60.0
 
 
-
 class MaintainConfig(BaseModel):
     """Tuning for `maintain`'s detectors.
 
@@ -406,8 +405,6 @@ class MaintainConfig(BaseModel):
     and the damping is named in the finding's own `data` so nothing about
     the run is silent.
     """
-
-
 
     grain_min_rows: int = 100
 
