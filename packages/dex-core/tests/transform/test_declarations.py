@@ -374,11 +374,10 @@ def test_partial_declaration_uses_existing_column_roles_for_warnings():
         ]
     )
 
-    _edits, warnings = apply_declarations(
-        [partial], _view(files), []
-    )
+    _edits, warnings = apply_declarations([partial], _view(files), [])
 
     assert not any("with no declared role" in warning for warning in warnings)
+
 
 # --- decisions ------------------------------------------------------------------
 
